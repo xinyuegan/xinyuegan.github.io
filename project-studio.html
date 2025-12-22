@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Does Buddha Pray? | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <!-- 修改标题 -->
+        <h1 class="project-title">The Ideal Artist’s Studio</h1>
+        <!-- 修改基本信息 -->
+        <p class="project-meta">Sculpture / 2023 / Mixed media</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <!-- 第一张图片路径 -->
+            <img src="assets/studio-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- 6张缩略图 -->
+        <div class="thumbnail-strip">
+            <img src="assets/studio-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/studio-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/studio-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/studio-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/studio-5.jpg" class="thumb" onclick="currentSlide(4)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <!-- 修改正文内容 -->
+        <div class="project-description">
+            <p>I created a small-scale miniature model for the exhibition The Ideal Artist's Studio, which explores and challenges public perceptions of what constitutes an ideal artist's workspace. In collaboration with an artist, I translated photographs of their actual studio into a miniature rendition. Throughout the making process, I distorted and rearranged existing elements, causing the space to resemble something cut and reassembled through the lens of memory.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        // 6张图片的路径
+        const images = [
+            "assets/studio-1.jpg",
+            "assets/studio-2.jpg",
+            "assets/studio-3.jpg",
+            "assets/studio-4.jpg",
+            "assets/studio-5.jpg",
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            mainImg.classList.add('fading');
+
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) {
+                thumbs[currentIndex].classList.add('active');
+            }
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

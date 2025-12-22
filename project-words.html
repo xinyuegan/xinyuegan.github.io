@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Does Buddha Pray? | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <!-- 修改标题 -->
+        <h1 class="project-title">Words don't mean what you think they mean</h1>
+        <!-- 修改基本信息 -->
+        <p class="project-meta">Experimental Film / 2024 / 10 min 13 sec / Black and white / Sound</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <!-- 第一张图片路径 -->
+            <img src="assets/words-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- 6张缩略图 -->
+        <div class="thumbnail-strip">
+            <img src="assets/words-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/words-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/words-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/words-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/words-5.jpg" class="thumb" onclick="currentSlide(4)">
+            <img src="assets/words-6.jpg" class="thumb" onclick="currentSlide(5)">
+            <img src="assets/words-7.jpg" class="thumb" onclick="currentSlide(6)">
+            <img src="assets/words-8.jpg" class="thumb" onclick="currentSlide(7)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <!-- 修改正文内容 -->
+        <div class="project-description">
+            <p>This experimental video work explores "language" and its meaning through a poetic yet experimental approach, combining digital technologies and processes with physical installations and performance in real-world settings.</p>
+            <p>In my work, language is not merely a symbolic sign; it is Being itself. Railroads divide the ground, cables cut through the sky, and rainwater shatters a lake's surface. Being writes itself in this way. We don't utilize language; we are language. Life begins, evolves, ends, and then repeats itself in different forms. Being is always expressing itself in various languages. Every creature is a language, and to exist means to write. As manifestations of Being, we write in different forms, but in one essence.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        // 6张图片的路径
+        const images = [
+            "assets/words-1.jpg",
+            "assets/words-2.jpg",
+            "assets/words-3.jpg",
+            "assets/words-4.jpg",
+            "assets/words-5.jpg",
+            "assets/words-6.jpg",
+            "assets/words-7.jpg",
+            "assets/words-8.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            mainImg.classList.add('fading');
+
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) {
+                thumbs[currentIndex].classList.add('active');
+            }
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

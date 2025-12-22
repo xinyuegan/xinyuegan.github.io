@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <h1 class="project-title">Words don't mean what you think they mean</h1>
+        <p class="project-meta"> Film Installation/ 2024 / Ink, rice papper, black dust tape</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <img src="assets/img1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="thumbnail-strip">
+            <img src="assets/img1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/img2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/img3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/img4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/img5.jpg" class="thumb" onclick="currentSlide(4)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <div class="project-description">
+            <p>This installation is created for the experimental video of the same title. Within this work, I further expand the meaning of language, transforming it into physical entity, into traces, into an emergent chaos suspended between recognizable and unrecognizable.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        const images = [
+            "assets/img1.jpg",
+            "assets/img2.jpg",
+            "assets/img3.jpg",
+            "assets/img4.jpg",
+            "assets/img5.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            mainImg.classList.add('fading');
+
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) {
+                thumbs[currentIndex].classList.add('active');
+            }
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

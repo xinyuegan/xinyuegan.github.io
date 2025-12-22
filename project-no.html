@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tying a knot in time's tail | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <h1 class="project-title">No one is allowed in</h1>
+        <p class="project-meta">Performance / 2023, 2025 / 1h</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <img src="assets/no-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- 10张缩略图 -->
+        <div class="thumbnail-strip">
+            <img src="assets/no-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/no-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/no-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/no-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/no-5.jpg" class="thumb" onclick="currentSlide(4)">
+            <img src="assets/no-6.jpg" class="thumb" onclick="currentSlide(5)">
+            <img src="assets/no-7.jpg" class="thumb" onclick="currentSlide(6)">
+            <img src="assets/no-8.jpg" class="thumb" onclick="currentSlide(7)">
+            <img src="assets/no-9.jpg" class="thumb" onclick="currentSlide(8)">
+            <img src="assets/no-10.jpg" class="thumb" onclick="currentSlide(9)">
+            <img src="assets/no-11.jpg" class="thumb" onclick="currentSlide(10)">
+            <img src="assets/no-12.jpg" class="thumb" onclick="currentSlide(11)">
+            <img src="assets/no-13.jpg" class="thumb" onclick="currentSlide(12)">
+            <img src="assets/no-14.jpg" class="thumb" onclick="currentSlide(13)">
+            <img src="assets/no-15.jpg" class="thumb" onclick="currentSlide(14)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <div class="project-description">
+            <p>This is a collaborative performance art piece. We selected a semi-enclosed underground space—an intriguing site we were forbidden to enter. Thus, we centered the theme around “No Admittance,” aiming to express the very state of exclusion embodied by the space. Inside, we performed a set of actions: whenever two individuals encountered each other, they were required to utter the phrase “No Admittance,” thereby framing the other’s approach as a potential intrusion.</p>
+            <p>This act served both as a defense of personal space and an emphasis on the invisible barriers within human interaction. Each declaration of “No Admittance” became a performer’s assertion. The space itself revealed a kind of boundary against the outside world, and the performers’ actions sought to make this barrier visible. The experience invited viewers to re‑examine their own relationships with others, as well as the relationship between space and the body. Within the exhibition area, three screens displayed images and videos under the same “No Admittance” theme. Captured at different times in the same location, they suggested that the space perpetually maintained its “No Admittance” state.</p>
+            <p>We later reperformed this piece in an art museum, shifting the theme to “Have you found it?” The same participants walked along fixed paths, and upon meeting, would ask one another, “Have you found it?”—as if we were perpetually searching for something that does not exist.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        // 10张图片的路径
+        const images = [
+            "assets/no-1.jpg",
+            "assets/no-2.jpg",
+            "assets/no-3.jpg",
+            "assets/no-4.jpg",
+            "assets/no-5.jpg",
+            "assets/no-6.jpg",
+            "assets/no-7.jpg",
+            "assets/no-8.jpg",
+            "assets/no-9.jpg",
+            "assets/no-10.jpg",
+            "assets/no-11.jpg",
+            "assets/no-12.jpg",
+            "assets/no-13.jpg",
+            "assets/no-14.jpg",
+            "assets/no-15.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            mainImg.classList.add('fading');
+
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) {
+                thumbs[currentIndex].classList.add('active');
+            }
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

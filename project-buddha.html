@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Does Buddha Pray? | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <!-- 修改标题 -->
+        <h1 class="project-title">Does Buddha Pray?</h1>
+        <!-- 修改基本信息 -->
+        <p class="project-meta">Experimental Animation / 2025 / 6 min 17 sec / Color / Sound</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <!-- 第一张图片路径 -->
+            <img src="assets/buddha-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- 6张缩略图 -->
+        <div class="thumbnail-strip">
+            <img src="assets/buddha-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/buddha-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/buddha-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/buddha-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/buddha-5.jpg" class="thumb" onclick="currentSlide(4)">
+            <img src="assets/buddha-6.jpg" class="thumb" onclick="currentSlide(5)">
+            <img src="assets/buddha-7.jpg" class="thumb" onclick="currentSlide(6)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <!-- 修改正文内容 -->
+        <div class="project-description">
+            <p>This experimental animation was inspired by a trip to Shanxi, where I observed people tossing coins toward the feet of a Buddha statue. I was struck by the transactional feel of their prayers—as if the imposing figure had become a means to fulfill personal wishes. Behind this grand statue stood rows of smaller stone Buddhas, known as the "figures of all beings," suggesting that anyone can attain enlightenment. It occurred to me that Buddha-nature might already be present within each person there. That led me to wonder: If people truly recognized that Buddha-nature lies within themselves—not in statues or external authority—would they still pray this way? Does Buddha pray?</p>
+            <p>To explore this, I merged a Buddha's head with a skeletal body, creating a scene in which a group of small skeletal Buddhas prays to a larger skeletal Buddha.</p>
+            <p>This experimental animation received the 2025 European Design Awards and was exhibited at the TAM Figovec Outdoor Gallery in Ljubljana, Slovenia.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        // 6张图片的路径
+        const images = [
+            "assets/buddha-1.jpg",
+            "assets/buddha-2.jpg",
+            "assets/buddha-3.jpg",
+            "assets/buddha-4.jpg",
+            "assets/buddha-5.jpg",
+            "assets/buddha-6.jpg",
+            "assets/buddha-7.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            mainImg.classList.add('fading');
+
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) {
+                thumbs[currentIndex].classList.add('active');
+            }
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

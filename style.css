@@ -1,0 +1,714 @@
+/* --- 全局设置 --- */
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fcfcfc;
+    color: #000;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: #000; transition: opacity 0.3s; }
+a:visited { color: #000; }
+a:hover { opacity: 0.6; }
+
+h1, h2, h3, .logo, .nav-links a, .section-title, .project-title {
+    font-family: 'Playfair Display', serif;
+}
+
+/* --- 导航栏 --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 50px 30px 50px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #eee;
+}
+
+body.home-page nav { 
+    background: transparent; 
+    mix-blend-mode: difference; 
+    border: none; 
+}
+body.home-page nav a { color: #fff; }
+body.home-page nav .logo a { color: #fff; }
+
+.logo a { font-size: 1.2rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+.nav-links { list-style: none; display: flex; gap: 40px; }
+.nav-links a { font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; }
+
+/* ======================================
+   首页视频 + 标题悬浮
+   ====================================== */
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+.main-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 80px;
+    left: 50px;
+    z-index: 10;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+/* ======================================
+   通用容器
+   ====================================== */
+.section-padding { padding: 120px 6vw; }
+.container { max-width: 1400px; margin: 0 auto; }
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 60px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    border-top: 1px solid #000;
+    padding-top: 40px;
+    display: block;
+    width: 100%;
+}
+
+/* ======================================
+   Works 三列布局
+   ====================================== */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px; /* 增加离横线的距离 */
+}
+
+.category-card {
+    display: block;
+    text-align: center;
+    color: #000;
+}
+
+.category-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #eee;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category-card:hover .category-image img {
+    transform: scale(1.05);
+}
+
+.category-card h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/* ======================================
+   主页 Fragments 板块
+   ====================================== */
+.fragments-home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    max-width: 800px;
+    margin-top: 40px; /* 增加离横线的距离 */
+}
+
+.fragment-home-card {
+    display: block;
+    text-align: center;
+    color: #000;
+}
+
+.fragment-home-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #eee;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.fragment-home-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.fragment-home-card:hover .fragment-home-image img {
+    transform: scale(1.05);
+}
+
+.fragment-home-card h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 8px;
+}
+
+.fragment-home-subtitle {
+    font-size: 0.95rem;
+    color: #888;
+    font-style: italic;
+}
+
+/* ======================================
+   About 左图右文布局
+   ====================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.about-profile {
+    text-align: center;
+}
+
+.profile-image {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 3/4;
+    background: #eee;
+    overflow: hidden;
+    margin: 0 auto 20px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.short-bio h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.short-bio p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.about-statement h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.about-statement p {
+    margin-bottom: 18px;
+    line-height: 1.8;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* ======================================
+   Exhibitions 样式
+   ====================================== */
+.exhibitions-section {
+    background-color: #f9f7f4;
+    padding: 80px 6vw; /* 修复1: 背景范围缩小 */
+}
+
+.exhibitions-section .section-title {
+    margin-bottom: 35px;
+}
+
+.exhibition-item {
+    display: flex;
+    gap: 30px;
+    padding: 22px 0; /* 修复1: 间隙调大 */
+    border-bottom: 1px solid #ddd;
+    align-items: baseline;
+}
+
+.exhibition-item:last-child {
+    border-bottom: none;
+}
+
+.exhibition-item .year {
+    font-size: 0.9rem; /* 修复1: 字体调大 */
+    color: #888;
+    min-width: 50px;
+    font-family: 'Inter', sans-serif;
+}
+
+.exhibition-item .details {
+    font-size: 1rem; /* 修复1: 字体调大 */
+    line-height: 1.6;
+}
+
+.exhibition-item .details strong {
+    font-weight: 600;
+}
+
+/* ======================================
+   Contact 部分
+   ====================================== */
+.contact-container {
+    text-align: center;
+}
+
+.contact-row {
+    margin-bottom: 20px;
+}
+
+.contact-label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.contact-link {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 1rem;
+}
+
+/* ======================================
+   子页面网格布局 (Films, Installations, Performances)
+   ====================================== */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.work-item {
+    display: block;
+    width: 100%;
+    color: #000;
+}
+
+.work-img-box,
+.img-box {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #eee;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.work-img-box img,
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.work-item:hover .work-img-box img,
+.work-item:hover .img-box img { 
+    transform: scale(1.05); 
+}
+
+.work-info h3,
+.info h3 { 
+    font-size: 1.2rem; 
+    margin-bottom: 5px; 
+    font-weight: 400; 
+    color: #000; 
+}
+
+.work-info p,
+.info p { 
+    font-size: 0.9rem; 
+    color: #666; 
+    font-family: 'Inter', sans-serif; 
+}
+
+.sub-tag,
+.tag { 
+    display: block; 
+    font-size: 0.75rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    color: #999; 
+    margin-bottom: 5px; 
+}
+
+/* ======================================
+   详情页布局
+   ====================================== */
+.nav-detail {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #eee;
+}
+
+.project-header {
+    margin-top: 120px;
+    margin-bottom: 40px;
+    padding: 0 6vw;
+}
+
+.project-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.project-meta {
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.gallery-container {
+    position: relative;
+    width: 100%;
+    padding: 0 6vw;
+    margin-bottom: 80px;
+}
+
+.main-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.gallery-main-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.3s ease; /* 修复3: 切换速度加快 */
+}
+
+.gallery-main-img.fading {
+    opacity: 0;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.8);
+    border: none;
+    color: #000;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 15px 20px;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,1);
+}
+
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+.thumbnail-strip {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.thumb {
+    height: 70px;
+    cursor: pointer;
+    opacity: 0.5;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.thumb.active,
+.thumb:hover {
+    opacity: 1;
+    border: 2px solid #000;
+}
+
+.project-content-wrapper {
+    padding: 0 6vw;
+    margin-top: 60px;
+    max-width: 100%;
+}
+
+.statement-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 40px;
+    padding-top: 60px; /* 修复1: Statement离灰色细线距离拉大 */
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.project-description {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.project-description p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* ======================================
+   Drawings 页面 - 修复3: 不裁剪图片
+   ====================================== */
+.drawings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 0 6vw;
+}
+
+.drawing-item {
+    display: block;
+}
+
+/* 修复3: 图片容器不固定比例，显示原图 */
+.drawing-img-box {
+    width: 100%;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drawing-img-box img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.drawing-item:hover .drawing-img-box img {
+    transform: scale(1.02);
+}
+
+/* Drawing 详情页 */
+.drawing-detail-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    padding: 0 6vw;
+    margin-top: 120px;
+    align-items: start;
+}
+
+.drawing-image-wrapper {
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.drawing-image-wrapper img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.drawing-info {
+    padding-top: 40px;
+}
+
+.drawing-info h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.drawing-info .meta {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* ======================================
+   Poems 页面
+   ====================================== */
+.poems-list {
+    padding: 0 6vw;
+    max-width: 800px;
+}
+
+.poem-item {
+    display: block;
+    padding: 40px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.poem-item:first-child {
+    padding-top: 0;
+}
+
+.poem-item h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.poem-item .excerpt {
+    font-size: 0.95rem;
+    color: #888;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* Poem 详情页 */
+.poem-detail-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 120px 6vw 80px;
+    text-align: center;
+}
+
+.poem-detail-container h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 50px;
+    font-family: 'Playfair Display', serif;
+}
+
+.poem-content {
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: #333;
+}
+
+.poem-content p {
+    margin-bottom: 1.5em;
+}
+
+/* ======================================
+   响应式适配
+   ====================================== */
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .about-profile {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .drawing-detail-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .drawings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 30px 30px 20px 30px;
+    }
+    
+    .nav-links { display: none; }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content {
+        left: 30px;
+        bottom: 50px;
+    }
+    
+    .section-padding {
+        padding: 80px 5vw;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .categories-grid,
+    .works-grid,
+    .drawings-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-image-wrapper {
+        height: 50vh;
+    }
+    
+    .project-header,
+    .gallery-container,
+    .project-content-wrapper {
+        padding: 0 5vw;
+    }
+    
+    .project-title {
+        font-size: 1.8rem;
+    }
+}

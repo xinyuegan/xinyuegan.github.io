@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Does Buddha Pray? | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <!-- 修改标题 -->
+        <h1 class="project-title">Placing a Dot</h1>
+        <!-- 修改基本信息 -->
+        <p class="project-meta">Experimental Animation series / 2025 / 6 min 45 sec / Color / Sound</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <!-- 第一张图片路径 -->
+            <img src="assets/dot-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- 6张缩略图 -->
+        <div class="thumbnail-strip">
+            <img src="assets/dot-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/dot-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/dot-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/dot-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/dot-5.jpg" class="thumb" onclick="currentSlide(4)">
+            <img src="assets/dot-6.jpg" class="thumb" onclick="currentSlide(5)">
+            <img src="assets/dot-7.jpg" class="thumb" onclick="currentSlide(6)">
+            <img src="assets/dot-8.jpg" class="thumb" onclick="currentSlide(7)">
+            <img src="assets/dot-9.jpg" class="thumb" onclick="currentSlide(8)">
+            <img src="assets/dot-10.jpg" class="thumb" onclick="currentSlide(9)">
+            <img src="assets/dot-11.jpg" class="thumb" onclick="currentSlide(10)">
+            <img src="assets/dot-12.jpg" class="thumb" onclick="currentSlide(11)">
+            <img src="assets/dot-13.jpg" class="thumb" onclick="currentSlide(12)">
+            <img src="assets/dot-14.jpg" class="thumb" onclick="currentSlide(13)">
+            <img src="assets/dot-15.jpg" class="thumb" onclick="currentSlide(14)">
+            <img src="assets/dot-16.jpg" class="thumb" onclick="currentSlide(15)">
+            <img src="assets/dot-17.jpg" class="thumb" onclick="currentSlide(16)">
+            <img src="assets/dot-18.jpg" class="thumb" onclick="currentSlide(17)">
+            <img src="assets/dot-19.jpg" class="thumb" onclick="currentSlide(18)">
+
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <!-- 修改正文内容 -->
+        <div class="project-description">
+            <p>This is an experimental animation series centered around the dot.</p>
+            <p>As the smallest visible unit in a two-dimensional world, the dot embodies the notion of “trace.” I continuously shift dimensional perspectives, moving between two and three dimensions. A tiny dot may become a dashed line, a sphere, a cylinder from a top view, or a ring from the side. The boundaries between dimensions are stretched, and space is twisted and unfolded in unexpected ways.</p>
+            <p>Simultaneously, the subject of narration remains in constant flux. Inspired by the non-linear narrative structures of contemporary fiction, I explore how shifts in perspective can alter voice and storytelling within the medium of video. The narrative unfolds like a continuous encounter—each meeting bringing surprise or unease. Visually, this translates into a sense of wonder and astonishment. I aim to construct a disorienting perception of time and space, inviting the viewer to join this fluid, transformative journey and experience the tension between dimensions.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        // 6张图片的路径
+        const images = [
+            "assets/dot-1.jpg",
+            "assets/dot-2.jpg",
+            "assets/dot-3.jpg",
+            "assets/dot-4.jpg",
+            "assets/dot-5.jpg",
+            "assets/dot-6.jpg",
+            "assets/dot-7.jpg",
+            "assets/dot-8.jpg",
+            "assets/dot-9.jpg",
+            "assets/dot-10.jpg",
+            "assets/dot-11.jpg",
+            "assets/dot-12.jpg",
+            "assets/dot-13.jpg",
+            "assets/dot-14.jpg",
+            "assets/dot-15.jpg",
+            "assets/dot-16.jpg",
+            "assets/dot-17.jpg",
+            "assets/dot-18.jpg",
+            "assets/dot-19.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            mainImg.classList.add('fading');
+
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) {
+                thumbs[currentIndex].classList.add('active');
+            }
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

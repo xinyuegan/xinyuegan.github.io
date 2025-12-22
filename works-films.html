@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { padding-bottom: 100px; }
+        
+        nav {
+            position: relative;
+            background: #fff;
+        }
+
+        .page-title { 
+            font-size: 3rem; 
+            margin: 40px 6vw 40px; 
+            font-weight: 400; 
+            border-bottom: 1px solid #000; 
+            padding-bottom: 20px; 
+        }
+
+        .category-header { 
+            margin: 120px 6vw 50px; /* 增加上方间隙 */
+            font-size: 2rem;
+            font-weight: 400;
+            font-style: normal;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .category-header:first-of-type {
+            margin-top: 40px;
+        }
+
+        .works-grid {
+            padding: 0 6vw;
+        }
+
+        .img-box {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #eee;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .work-item:hover .img-box img {
+            transform: scale(1.05);
+        }
+
+        .info h3 { 
+            font-size: 1.2rem;
+            font-weight: 400; 
+            margin-bottom: 5px; 
+        }
+        .info p { 
+            font-size: 0.9rem;
+            color: #666; 
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="works-films.html" style="text-decoration:underline !important;">Films</a></li>
+            <li><a href="works-installations.html">Installations</a></li>
+            <li><a href="works-performances.html">Performances</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="page-title">Films</h1>
+
+    <!-- 分类 1: Experimental Films -->
+    <h2 class="category-header">Experimental Films</h2>
+    <div class="works-grid">
+        
+        <a href="project-words.html" class="work-item">
+            <div class="img-box"><img src="assets/film-words.jpg" alt="Words"></div>
+            <div class="info">
+                <h3>Words don't mean what you think they mean</h3>
+                <p>2024</p>
+            </div>
+        </a>
+
+        <a href="project-buddha.html" class="work-item">
+            <div class="img-box"><img src="assets/film-buddha.jpg" alt="Buddha"></div>
+            <div class="info">
+                <h3>Does Buddha Pray?</h3>
+                <p>2025</p>
+            </div>
+        </a>
+
+        <a href="project-dot.html" class="work-item">
+            <div class="img-box"><img src="assets/film-dot.jpg" alt="Dot"></div>
+            <div class="info">
+                <h3>Placing a Dot</h3>
+                <p>2025</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 分类 2: Non-fiction Film -->
+    <h2 class="category-header">Non-fiction Film</h2>
+    <div class="works-grid">
+        <a href="project-different.html" class="work-item">
+            <div class="img-box"><img src="assets/film-different.jpg" alt="Documentary"></div>
+            <div class="info">
+                <h3>We are Different, We are All the Same!</h3>
+                <p>2024</p>
+            </div>
+        </a>
+    </div>
+
+</body>
+</html>
+
+</html>
