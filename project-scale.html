@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <h1 class="project-title">Scale</h1>
+        <p class="project-meta">Video / 2026 / 5 min 35 sec</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <img src="assets/scale-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="thumbnail-strip">
+            <img src="assets/scale-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/scale-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/scale-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/scale-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/scale-5.jpg" class="thumb" onclick="currentSlide(4)">
+            <img src="assets/scale-6.jpg" class="thumb" onclick="currentSlide(5)">
+            <img src="assets/scale-7.jpg" class="thumb" onclick="currentSlide(6)">
+            <img src="assets/scale-8.jpg" class="thumb" onclick="currentSlide(7)">
+            <img src="assets/scale-9.jpg" class="thumb" onclick="currentSlide(8)">
+            <img src="assets/scale-10.jpg" class="thumb" onclick="currentSlide(9)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <div class="project-description">
+            <p>Using the body to measure a wardrobe — inside and out.</p>
+            <p>Stretching, compressing, contorting: as the body takes the measure of the wardrobe, the wardrobe takes the measure of the body.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        const images = [
+            "assets/scale-1.jpg",
+            "assets/scale-2.jpg",
+            "assets/scale-3.jpg",
+            "assets/scale-4.jpg",
+            "assets/scale-5.jpg",
+            "assets/scale-6.jpg",
+            "assets/scale-7.jpg",
+            "assets/scale-8.jpg",
+            "assets/scale-9.jpg",
+            "assets/scale-10.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+            mainImg.classList.add('fading');
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                setTimeout(() => { isAnimating = false; }, 300);
+            }, 300);
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) thumbs[currentIndex].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>
