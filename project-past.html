@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How the Past Hurts a Person | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <h1 class="project-title">How the Past Hurts a Person</h1>
+        <p class="project-meta">Performance / 2023</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <img src="assets/past-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="thumbnail-strip">
+            <img src="assets/past-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/past-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/past-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/past-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/past-5.jpg" class="thumb" onclick="currentSlide(4)">
+            <img src="assets/past-6.jpg" class="thumb" onclick="currentSlide(5)">
+            <img src="assets/past-7.jpg" class="thumb" onclick="currentSlide(6)">
+            <img src="assets/past-8.jpg" class="thumb" onclick="currentSlide(7)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <div class="project-description">
+            <p>I place a ball of rice paper soaked with ink into a bathtub filled with sheets of rice paper. Using a showerhead, I pour water over the inked paper ball until the ink slowly spreads and saturates every sheet.</p>
+            <p>Then I paste these sheets onto a wall and project onto them the moving image of rice paper being soaked by ink.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        const images = [
+            "assets/past-1.jpg",
+            "assets/past-2.jpg",
+            "assets/past-3.jpg",
+            "assets/past-4.jpg",
+            "assets/past-5.jpg",
+            "assets/past-6.jpg",
+            "assets/past-7.jpg",
+            "assets/past-8.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+            mainImg.classList.add('fading');
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                setTimeout(() => { isAnimating = false; }, 300);
+            }, 300);
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) thumbs[currentIndex].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Line | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <h1 class="project-title">A Line</h1>
+        <p class="project-meta">Performance / 2025</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <img src="assets/line-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="thumbnail-strip">
+            <img src="assets/line-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/line-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/line-3.jpg" class="thumb" onclick="currentSlide(2)">
+            <img src="assets/line-4.jpg" class="thumb" onclick="currentSlide(3)">
+            <img src="assets/line-5.jpg" class="thumb" onclick="currentSlide(4)">
+            <img src="assets/line-6.jpg" class="thumb" onclick="currentSlide(5)">
+            <img src="assets/line-7.jpg" class="thumb" onclick="currentSlide(6)">
+            <img src="assets/line-8.jpg" class="thumb" onclick="currentSlide(7)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <div class="project-description">
+            <p>I believe that people are connected to one another by lines.</p>
+            <p>Between my mother's body and mine — perhaps navel to navel, cord to cord — there runs a single line. One end lives in my room on the seventh floor. The other trails down to the walkway of the residential compound below.</p>
+            <p>When I am not looking, my mother pulls that line — hard. I will be mid-stride, walking, when I feel a sudden and violent tug dragging me backwards, step by reluctant step. No matter how far I walk, I cannot leave this compound. Just as she, no matter how she wanders, cannot leave my room.</p>
+            <p>And yet, beneath the open blue of the sky, there are countless threads — dense and trembling, pulling in every direction at once. The world is a net, and it breathes.</p>
+            <p>Video available at: https://youtu.be/IN6Wn5LJVkU
+</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        const images = [
+            "assets/line-1.jpg",
+            "assets/line-2.jpg",
+            "assets/line-3.jpg",
+            "assets/line-4.jpg",
+            "assets/line-5.jpg",
+            "assets/line-6.jpg",
+            "assets/line-7.jpg",
+            "assets/line-8.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+            mainImg.classList.add('fading');
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                setTimeout(() => { isAnimating = false; }, 300);
+            }, 300);
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) thumbs[currentIndex].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>

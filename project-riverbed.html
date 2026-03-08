@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filling the Riverbed | Gan Xinyue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-detail">
+        <div class="logo"><a href="index.html">GAN XINYUE</a></div>
+        <ul class="nav-links">
+            <li><a href="javascript:history.back()">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="project-header">
+        <h1 class="project-title">Filling the Riverbed</h1>
+        <p class="project-meta">Installation / 2026</p>
+    </div>
+
+    <div class="gallery-container">
+        <div class="main-image-wrapper">
+            <img src="assets/riverbed-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            
+            <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="thumbnail-strip">
+            <img src="assets/riverbed-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/riverbed-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/riverbed-3.jpg" class="thumb" onclick="currentSlide(2)">
+        </div>
+    </div>
+
+    <div class="project-content-wrapper">
+        <h3 class="statement-title">Statement</h3>
+        <div class="project-description">
+            <p>I braided palm leaves into a long rope, stretching from the ends of my hair all the way down to my feet.</p>
+            <p>This braid settled perfectly into the hollow of my spine, the crease of my buttocks, the grooves of my groin, the gaps between my legs, and the space between my feet—as if a riverbed had been filled with soil, raised to the level of its banks.</p>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:60px; color:#999; font-size:0.8rem;">
+        <p>&copy; 2025 Gan Xinyue.</p>
+    </footer>
+
+    <script>
+        const images = [
+            "assets/riverbed-1.jpg",
+            "assets/riverbed-2.jpg",
+            "assets/riverbed-3.jpg"
+        ];
+
+        let currentIndex = 0;
+        let isAnimating = false;
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery() {
+            if (isAnimating) return;
+            isAnimating = true;
+            mainImg.classList.add('fading');
+            setTimeout(() => {
+                mainImg.src = images[currentIndex];
+                mainImg.classList.remove('fading');
+                setTimeout(() => { isAnimating = false; }, 300);
+            }, 300);
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentIndex]) thumbs[currentIndex].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            if (n === currentIndex || isAnimating) return;
+            currentIndex = n;
+            updateGallery();
+        }
+
+        function changeSlide(n) {
+            if (isAnimating) return;
+            currentIndex += n;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateGallery();
+        }
+    </script>
+
+</body>
+</html>
