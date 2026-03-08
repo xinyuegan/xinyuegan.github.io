@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Does Buddha Pray? | Gan Xinyue</title>
+    <title>Filling the Riverbed | Gan Xinyue</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 </head>
@@ -17,44 +17,30 @@
     </nav>
 
     <div class="project-header">
-        <!-- 修改标题 -->
-        <h1 class="project-title">Words don't mean what you think they mean</h1>
-        <!-- 修改基本信息 -->
-        <p class="project-meta">Experimental Film / 2024 / 10 min 13 sec / Black and white / Sound</p>
+        <h1 class="project-title">Filling the Riverbed</h1>
+        <p class="project-meta">Installation / 2026</p>
     </div>
 
     <div class="gallery-container">
         <div class="main-image-wrapper">
-            <!-- 第一张图片路径 -->
-            <img src="assets/words-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
+            <img src="assets/riverbed-1.jpg" alt="Main View" class="gallery-main-img" id="mainImg">
             
             <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
             <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
         </div>
 
-        <!-- 6张缩略图 -->
         <div class="thumbnail-strip">
-            <img src="assets/words-1.jpg" class="thumb active" onclick="currentSlide(0)">
-            <img src="assets/words-2.jpg" class="thumb" onclick="currentSlide(1)">
-            <img src="assets/words-3.jpg" class="thumb" onclick="currentSlide(2)">
-            <img src="assets/words-4.jpg" class="thumb" onclick="currentSlide(3)">
-            <img src="assets/words-5.jpg" class="thumb" onclick="currentSlide(4)">
-            <img src="assets/words-6.jpg" class="thumb" onclick="currentSlide(5)">
-            <img src="assets/words-7.jpg" class="thumb" onclick="currentSlide(6)">
-            <img src="assets/words-8.jpg" class="thumb" onclick="currentSlide(7)">
+            <img src="assets/riverbed-1.jpg" class="thumb active" onclick="currentSlide(0)">
+            <img src="assets/riverbed-2.jpg" class="thumb" onclick="currentSlide(1)">
+            <img src="assets/riverbed-3.jpg" class="thumb" onclick="currentSlide(2)">
         </div>
     </div>
 
     <div class="project-content-wrapper">
         <h3 class="statement-title">Statement</h3>
-        <!-- 修改正文内容 -->
         <div class="project-description">
-            <p>I imagine that one day words escape from the page, turning into a mass of black shadows slipping into cracks and crevices.</p>
-            <p>Sometimes they become electrical wires cutting across the sky, railway tracks slicing through the earth, or raindrops shattering the surface of a lake.</p>
-            <p>We watch all of this happen.</p>
-            <p>We open our mouths, wanting to say something—</p>
-            <p>and suddenly realize that we cannot say anything at all.</p>
-            <p>Video available at: https://youtu.be/C83UvREX0KA </p>
+            <p>I braided palm leaves into a long rope, stretching from the ends of my hair all the way down to my feet.</p>
+            <p>This braid settled perfectly into the hollow of my spine, the crease of my buttocks, the grooves of my groin, the gaps between my legs, and the space between my feet—as if a riverbed had been filled with soil, raised to the level of its banks.</p>
         </div>
     </div>
 
@@ -63,16 +49,10 @@
     </footer>
 
     <script>
-        // 6张图片的路径
         const images = [
-            "assets/words-1.jpg",
-            "assets/words-2.jpg",
-            "assets/words-3.jpg",
-            "assets/words-4.jpg",
-            "assets/words-5.jpg",
-            "assets/words-6.jpg",
-            "assets/words-7.jpg",
-            "assets/words-8.jpg"
+            "assets/riverbed-1.jpg",
+            "assets/riverbed-2.jpg",
+            "assets/riverbed-3.jpg"
         ];
 
         let currentIndex = 0;
@@ -83,22 +63,14 @@
         function updateGallery() {
             if (isAnimating) return;
             isAnimating = true;
-
             mainImg.classList.add('fading');
-
             setTimeout(() => {
                 mainImg.src = images[currentIndex];
                 mainImg.classList.remove('fading');
-                
-                setTimeout(() => {
-                    isAnimating = false;
-                }, 300);
+                setTimeout(() => { isAnimating = false; }, 300);
             }, 300);
-
             thumbs.forEach(t => t.classList.remove('active'));
-            if(thumbs[currentIndex]) {
-                thumbs[currentIndex].classList.add('active');
-            }
+            if(thumbs[currentIndex]) thumbs[currentIndex].classList.add('active');
         }
 
         function currentSlide(n) {
